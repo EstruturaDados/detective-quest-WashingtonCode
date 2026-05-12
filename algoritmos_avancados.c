@@ -5,3 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+// Definição da constante com o tamanho da tabela hash
+#define TAM_HASH 10
