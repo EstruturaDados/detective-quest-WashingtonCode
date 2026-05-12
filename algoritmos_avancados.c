@@ -91,3 +91,12 @@ Sala* criarSala(char nome[], char pista[]) {
     }
     return nova;
 }
+
+// Função inserir pista
+PistaNode* inserirPista(PistaNode* raiz, char conteudo[]) {
+    if (raiz == NULL) {
+        PistaNode* novo = (PistaNode*)malloc(sizeof(PistaNode));
+        strcpy(novo->conteudo, conteudo);
+        novo->esq = novo->dir = NULL;
+        return novo;
+    }
