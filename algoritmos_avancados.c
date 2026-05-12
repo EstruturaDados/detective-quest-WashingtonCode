@@ -31,3 +31,49 @@ void explorarSalasComPistas(Sala* mapa, PistaNode** inventario);
 void exibirPistas(PistaNode* raiz);
 void liberarMapa(Sala* raiz);
 void liberarPistas(PistaNode* raiz);
+
+// --- FUNÇÃO PRINCIPAL ---
+int main() {
+        
+    // 1. Inicialização do Inventário de Pistas (BST vazia)
+    PistaNode* inventarioPistas = NULL;
+
+    // 2. Montando o Mapa da Mansão com Pistas
+    // criarSala(Nome, Pista)
+    Sala* hall = criarSala("Hall de Entrada", "Chave enferrujada");
+    Sala* salaEstar = criarSala("Sala de Estar", "Bilhete rasgado");
+    Sala* cozinha = criarSala("Cozinha", "Faca suja de terra");
+    Sala* biblioteca = criarSala("Biblioteca", "Livro com fundo falso");
+    Sala* jardim = criarSala("Jardim", "Pegadas proximas ao muro");
+    Sala* despensa = criarSala("Despensa", "Fragmento de tecido");
+    Sala* escritorio = criarSala("Escritorio", "Senha do cofre");
+
+    // Conexões do Mapa
+    hall->esquerda = salaEstar;
+    hall->direita = cozinha;
+    salaEstar->esquerda = biblioteca;
+    salaEstar->direita = jardim;
+    cozinha->esquerda = despensa;
+    biblioteca->direita = escritorio;
+
+    // 3. Execução do Jogo
+    explorarSalasComPistas(hall, &inventarioPistas);
+
+    // 4. Exibição do Resultado Final
+    printf("\n========================================");
+    printf("\n       RELATORIO FINAL DE PISTAS       ");
+    printf("\n(Organizadas em Ordem Alfabetica pela BST)");
+    printf("\n========================================\n");
+    if (inventarioPistas == NULL) {
+        printf("Nenhuma pista foi coletada.\n");
+    } else {
+        exibirPistas(inventarioPistas);
+    }
+
+    // 5. Limpeza de Memória
+    liberarMapa(hall);
+    liberarPistas(inventarioPistas);
+
+    printf("\nSistema encerrado. Obrigado, Detetive!\n");
+    return 0;
+}
