@@ -33,3 +33,16 @@ typedef struct HashNode {
 
 // Tabela Hash de associações Pista/Suspeito
 HashNode* tabelaHash[TAM_HASH];
+
+// --- PROTÓTIPOS DAS FUNÇÕES ---
+Sala* criarSala(char nome[], char pista[]);
+PistaNode* inserirPista(PistaNode* raiz, char conteudo[]);
+void inserirNaHash(char pista[], char suspeito[]);
+char* encontrarSuspeito(char pista[]);
+void explorarSalas(Sala* mapa, PistaNode** inventario);
+void exibirPistas(PistaNode* raiz);
+void percorrerEContar(PistaNode* raiz, char* acusado, int* contador);
+void verificarSuspeitoFinal(PistaNode* inventario);
+void liberarMapa(Sala* raiz);
+void liberarPistas(PistaNode* raiz);
+void liberarHash();
