@@ -23,3 +23,11 @@ typedef struct Sala {
     struct Sala *esquerda;
     struct Sala *direita;
 } Sala;
+
+// --- PROTÓTIPOS DAS FUNÇÕES ---
+Sala* criarSala(char nome[], char pista[]);
+PistaNode* inserirPista(PistaNode* raiz, char conteudo[]);
+void explorarSalasComPistas(Sala* mapa, PistaNode** inventario);
+void exibirPistas(PistaNode* raiz);
+void liberarMapa(Sala* raiz);
+void liberarPistas(PistaNode* raiz);
