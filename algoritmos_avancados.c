@@ -23,3 +23,10 @@ typedef struct Sala {
     char pista[100];
     struct Sala *esquerda, *direita;
 } Sala;
+
+// struct HashNode - Tabela Hash para associar Pistas a Suspeitos.
+typedef struct HashNode {
+    char pista[100];
+    char suspeito[50];
+    struct HashNode *proximo;
+} HashNode;
