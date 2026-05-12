@@ -121,3 +121,16 @@ PistaNode* inserirPista(PistaNode* raiz, char conteudo[]) {
         raiz->dir = inserirPista(raiz->dir, conteudo);
     return raiz;
 }
+
+// Função inserirNaHash
+void inserirNaHash(char pista[], char suspeito[]) {
+    int soma = 0;
+    for(int i=0; pista[i] != '\0'; i++) soma += pista[i];
+    int indice = soma % TAM_HASH;
+
+    HashNode* novo = (HashNode*)malloc(sizeof(HashNode));
+    strcpy(novo->pista, pista);
+    strcpy(novo->suspeito, suspeito);
+    novo->proximo = tabelaHash[indice];
+    tabelaHash[indice] = novo;
+}
