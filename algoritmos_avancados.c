@@ -153,3 +153,19 @@ void exibirPistas(PistaNode* raiz) {
     }
 }
 
+// Funções de liberação de memória
+void liberarMapa(Sala* raiz) {
+    if (raiz) {
+        liberarMapa(raiz->esquerda);
+        liberarMapa(raiz->direita);
+        free(raiz);
+    }
+}
+
+void liberarPistas(PistaNode* raiz) {
+    if (raiz) {
+        liberarPistas(raiz->esq);
+        liberarPistas(raiz->dir);
+        free(raiz);
+    }
+}
