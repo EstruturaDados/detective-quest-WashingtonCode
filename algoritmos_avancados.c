@@ -50,3 +50,20 @@ int main() {
 
     return 0;
 }
+
+/**
+ * criarSala() - Aloca memória dinamicamente para uma nova sala.
+ * @nome: String com o nome do cômodo.
+ * Retorna: Ponteiro para a nova Sala criada.
+ */
+Sala* criarSala(char nome[]) {
+    Sala* novaSala = (Sala*)malloc(sizeof(Sala));
+    if (novaSala == NULL) {
+        printf("[Erro]: Falha na alocacao de memoria.\n");
+        exit(1);
+    }
+    strcpy(novaSala->nome, nome);
+    novaSala->esquerda = NULL;
+    novaSala->direita = NULL;
+    return novaSala;
+}
