@@ -46,3 +46,51 @@ void verificarSuspeitoFinal(PistaNode* inventario);
 void liberarMapa(Sala* raiz);
 void liberarPistas(PistaNode* raiz);
 void liberarHash();
+
+// --- FUNÇÃO PRINCIPAL ---
+int main() {
+    
+    // Inicialização da Tabela Hash (Dicionário de Evidências)
+    for(int i=0; i<TAM_HASH; i++) tabelaHash[i] = NULL;
+
+    inserirNaHash("Chave enferrujada", "Mordomo");
+    inserirNaHash("Livro com fundo falso", "Mordomo");
+    inserirNaHash("Bilhete rasgado", "Cozinheira");
+    inserirNaHash("Fragmento de tecido", "Cozinheira");
+    inserirNaHash("Faca suja de terra", "Jardineiro");
+    inserirNaHash("Pegadas proximas ao muro", "Jardineiro");
+
+    // Montagem do Mapa da Mansão (Árvore Binária)
+    Sala* hall = criarSala("Hall de Entrada", "Chave enferrujada");
+    Sala* salaEstar = criarSala("Sala de Estar", "Bilhete rasgado");
+    Sala* cozinha = criarSala("Cozinha", "Fragmento de tecido");
+    Sala* biblioteca = criarSala("Biblioteca", "Livro com fundo falso");
+    Sala* jardim = criarSala("Jardim", "Pegadas proximas ao muro");
+    Sala* despensa = criarSala("Despensa", "Faca suja de terra");
+
+    hall->esquerda = salaEstar;
+    hall->direita = cozinha;
+    salaEstar->esquerda = biblioteca;
+    salaEstar->direita = jardim;
+    cozinha->esquerda = despensa;
+
+    // Execução do Jogo
+    PistaNode* inventarioPistas = NULL;
+    explorarSalas(hall, &inventarioPistas);
+
+    // Julgamento Final
+    if (inventarioPistas != NULL) {
+        verificarSuspeitoFinal(inventarioPistas);
+    } else {
+        printf("\nInvestigacao encerrada sem pistas coletadas.\n");
+    }
+
+    // Liberação de Memória (O dever de todo programador Mestre)
+    printf("\n[SISTEMA]: Desalocando estruturas e limpando memoria...\n");
+    liberarMapa(hall);
+    liberarPistas(inventarioPistas);
+    liberarHash();
+
+    printf("[SISTEMA]: Programa finalizado com sucesso.\n");
+    return 0;
+}
