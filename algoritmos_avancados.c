@@ -144,3 +144,12 @@ void explorarSalasComPistas(Sala* mapa, PistaNode** inventario) {
     }
 }
 
+// Função exibir pistas
+void exibirPistas(PistaNode* raiz) {
+    if (raiz != NULL) {
+        exibirPistas(raiz->esq);
+        printf("- %s\n", raiz->conteudo);
+        exibirPistas(raiz->dir);
+    }
+}
+
