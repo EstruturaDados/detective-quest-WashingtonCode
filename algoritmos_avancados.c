@@ -14,3 +14,12 @@ typedef struct PistaNode {
     struct PistaNode *esq;
     struct PistaNode *dir;
 } PistaNode;
+
+// Struct Sala para o mapa da mansão (Árvore Binária).
+ 
+typedef struct Sala {
+    char nome[50];
+    char pista[100]; // Pista associada a este cômodo
+    struct Sala *esquerda;
+    struct Sala *direita;
+} Sala;
