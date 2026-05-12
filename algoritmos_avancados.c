@@ -134,3 +134,17 @@ void inserirNaHash(char pista[], char suspeito[]) {
     novo->proximo = tabelaHash[indice];
     tabelaHash[indice] = novo;
 }
+
+// Função encontrarSuspeito
+char* encontrarSuspeito(char pista[]) {
+    int soma = 0;
+    for(int i=0; pista[i] != '\0'; i++) soma += pista[i];
+    int indice = soma % TAM_HASH;
+
+    HashNode* atual = tabelaHash[indice];
+    while (atual) {
+        if (strcmp(atual->pista, pista) == 0) return atual->suspeito;
+        atual = atual->proximo;
+    }
+    return "Desconhecido";
+}
