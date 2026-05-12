@@ -12,3 +12,8 @@ typedef struct Sala {
     struct Sala *esquerda;
     struct Sala *direita;
 } Sala;
+
+// Protótipos das funções
+Sala* criarSala(char nome[]);
+void explorarSalas(Sala* raiz);
+void liberarMemoria(Sala* raiz);
