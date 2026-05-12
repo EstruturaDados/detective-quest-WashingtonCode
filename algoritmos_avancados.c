@@ -173,3 +173,24 @@ void explorarSalas(Sala* mapa, PistaNode** inventario) {
         else printf("\n[AVISO]: Caminho invalido!\n");
     }
 }
+
+// Função verificarSuspeitoFinal
+void verificarSuspeitoFinal(PistaNode* inventario) {
+    char acusado[50];
+    int contador = 0;
+
+    printf("\n--- RELATORIO DE EVIDENCIAS (BST) ---\n");
+    exibirPistas(inventario);
+
+    printf("\nBaseado nas pistas, quem e o culpado? ");
+    scanf(" %[^\n]", acusado);
+
+    percorrerEContar(inventario, acusado, &contador);
+
+    printf("\nAnalisando provas contra %s...", acusado);
+    if (contador >= 2) {
+        printf("\nSUCESSO! %d pistas confirmam a culpa de %s. Caso encerrado!\n", contador, acusado);
+    } else {
+        printf("\nFALHA! Apenas %d pista(s) nao sao suficientes. %s foi liberado.\n", contador, acusado);
+    }
+}
