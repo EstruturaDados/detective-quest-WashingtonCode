@@ -148,3 +148,28 @@ char* encontrarSuspeito(char pista[]) {
     }
     return "Desconhecido";
 }
+
+// Função explorarSalas
+void explorarSalas(Sala* mapa, PistaNode** inventario) {
+    Sala* atual = mapa;
+    char escolha;
+    printf("\n--- MODO INVESTIGACAO ATIVO ---\n");
+
+    while (atual) {
+        printf("\nVocê está em: %s", atual->nome);
+        printf("\nPista encontrada no local: %s", atual->pista);
+        *inventario = inserirPista(*inventario, atual->pista);
+
+        printf("\n\nOpcoes:\n"); 
+        printf("[e] Esquerda: %s\n", atual->esquerda ? atual->esquerda->nome : "Fim");
+        printf("[d] Direita: %s\n", atual->direita ? atual->direita->nome : "Fim");
+        printf("[s] Sair\n");
+        printf("\nEscolha: ");
+        scanf(" %c", &escolha);
+
+        if ((escolha == 'e' || escolha == 'E') && atual->esquerda) atual = atual->esquerda;
+        else if ((escolha == 'd' || escolha == 'D') && atual->direita) atual = atual->direita;
+        else if (escolha == 's' || escolha == 'S') break;
+        else printf("\n[AVISO]: Caminho invalido!\n");
+    }
+}
