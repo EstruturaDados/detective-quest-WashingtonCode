@@ -202,3 +202,12 @@ void percorrerEContar(PistaNode* raiz, char* acusado, int* contador) {
     if (strcmp(encontrarSuspeito(raiz->conteudo), acusado) == 0) (*contador)++;
     percorrerEContar(raiz->dir, acusado, contador);
 }
+
+// Função exibirPistas
+void exibirPistas(PistaNode* raiz) {
+    if (raiz) {
+        exibirPistas(raiz->esq);
+        printf("- %s (Relacionado a: %s)\n", raiz->conteudo, encontrarSuspeito(raiz->conteudo));
+        exibirPistas(raiz->dir);
+    }
+}
