@@ -30,3 +30,6 @@ typedef struct HashNode {
     char suspeito[50];
     struct HashNode *proximo;
 } HashNode;
+
+// Tabela Hash de associações Pista/Suspeito
+HashNode* tabelaHash[TAM_HASH];
