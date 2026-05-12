@@ -194,3 +194,11 @@ void verificarSuspeitoFinal(PistaNode* inventario) {
         printf("\nFALHA! Apenas %d pista(s) nao sao suficientes. %s foi liberado.\n", contador, acusado);
     }
 }
+
+// Função percorrerEContar
+void percorrerEContar(PistaNode* raiz, char* acusado, int* contador) {
+    if (!raiz) return;
+    percorrerEContar(raiz->esq, acusado, contador);
+    if (strcmp(encontrarSuspeito(raiz->conteudo), acusado) == 0) (*contador)++;
+    percorrerEContar(raiz->dir, acusado, contador);
+}
