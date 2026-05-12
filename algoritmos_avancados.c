@@ -28,3 +28,25 @@ int main() {
     Sala* jardim = criarSala("Jardim");
     Sala* despensa = criarSala("Despensa");
     Sala* escritorio = criarSala("Escritorio");
+
+    // 2. Montando a estrutura da árvore (Mapa da Mansão)
+    hall->esquerda = salaEstar;
+    hall->direita = cozinha;
+
+    salaEstar->esquerda = biblioteca;
+    salaEstar->direita = jardim;
+
+    cozinha->esquerda = despensa;
+    
+    biblioteca->direita = escritorio;
+
+    // 3. Iniciando a gameplay
+    explorarSalas(hall);
+
+    // 4. Finalização e limpeza de memória
+    printf("\nLimpando registros e liberando memoria...\n");
+    liberarMemoria(hall);
+    printf("Sistema encerrado com sucesso.\n");
+
+    return 0;
+}
