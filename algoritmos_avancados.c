@@ -77,3 +77,17 @@ int main() {
     printf("\nSistema encerrado. Obrigado, Detetive!\n");
     return 0;
 }
+
+// --- IMPLEMENTAÇÃO DAS FUNÇÕES ---
+
+// Função criar sala
+Sala* criarSala(char nome[], char pista[]) {
+    Sala* nova = (Sala*)malloc(sizeof(Sala));
+    if (nova) {
+        strcpy(nova->nome, nome);
+        strcpy(nova->pista, pista);
+        nova->esquerda = NULL;
+        nova->direita = NULL;
+    }
+    return nova;
+}
