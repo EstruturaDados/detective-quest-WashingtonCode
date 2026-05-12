@@ -8,3 +8,11 @@
 
 // Definição da constante com o tamanho da tabela hash
 #define TAM_HASH 10
+
+// --- ESTRUTURAS DE DADOS ---
+
+// struct PistaNode - Árvore Binária de Busca (BST) para armazenar pistas coletadas.
+typedef struct PistaNode {
+    char conteudo[100];
+    struct PistaNode *esq, *dir;
+} PistaNode;
