@@ -16,3 +16,10 @@ typedef struct PistaNode {
     char conteudo[100];
     struct PistaNode *esq, *dir;
 } PistaNode;
+
+// struct Sala - Árvore Binária representando o mapa físico da mansão.
+typedef struct Sala {
+    char nome[50];
+    char pista[100];
+    struct Sala *esquerda, *direita;
+} Sala;
