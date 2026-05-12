@@ -100,3 +100,47 @@ PistaNode* inserirPista(PistaNode* raiz, char conteudo[]) {
         novo->esq = novo->dir = NULL;
         return novo;
     }
+
+    // Lógica da BST: Strings menores à esquerda, maiores à direita
+    if (strcmp(conteudo, raiz->conteudo) < 0) {
+        raiz->esq = inserirPista(raiz->esq, conteudo);
+    } else {
+        raiz->dir = inserirPista(raiz->dir, conteudo);
+    }
+    return raiz;
+}
+
+// Função explorar salas com pistas
+void explorarSalasComPistas(Sala* mapa, PistaNode** inventario) {
+    Sala* atual = mapa;
+    char escolha;
+
+    printf("\n--- Detective Quest: Nivel Aventureiro ---\n");
+
+    while (atual != NULL) {
+        printf("\n[LOCALIZACAO]: %s\n", atual->nome);
+        
+        // Coleta automática: Insere a pista da sala atual na BST de inventário
+        printf("[SISTEMA]: Pista encontrada e coletada: \"%s\"\n", atual->pista);
+        *inventario = inserirPista(*inventario, atual->pista);
+
+        printf("\nPara onde deseja ir?");
+        if (atual->esquerda) printf("\n [e] Esquerda: %s", atual->esquerda->nome);
+        if (atual->direita)  printf("\n [d] Direita:  %s", atual->direita->nome);
+        printf("\n [s] Sair e Ver Relatorio");
+        
+        printf("\nEscolha: ");
+        scanf(" %c", &escolha);
+
+        if ((escolha == 'e' || escolha == 'E') && atual->esquerda) {
+            atual = atual->esquerda;
+        } else if ((escolha == 'd' || escolha == 'D') && atual->direita) {
+            atual = atual->direita;
+        } else if (escolha == 's' || escolha == 'S') {
+            break;
+        } else {
+            printf("\n--- Caminho invalido ou sem saida! ---\n");
+        }
+    }
+}
+
