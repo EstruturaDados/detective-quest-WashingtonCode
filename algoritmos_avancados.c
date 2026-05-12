@@ -5,3 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+// --- ESTRUTURAS DE DADOS ---
+
+// Struct PistaNode para a Árvore Binária de Busca (BST) de pistas.
+typedef struct PistaNode {
+    char conteudo[100];
+    struct PistaNode *esq;
+    struct PistaNode *dir;
+} PistaNode;
