@@ -17,3 +17,14 @@ typedef struct Sala {
 Sala* criarSala(char nome[]);
 void explorarSalas(Sala* raiz);
 void liberarMemoria(Sala* raiz);
+
+// Função principal
+int main() {
+    // 1. Criando os cômodos individualmente
+    Sala* hall = criarSala("Hall de Entrada");
+    Sala* salaEstar = criarSala("Sala de Estar");
+    Sala* cozinha = criarSala("Cozinha");
+    Sala* biblioteca = criarSala("Biblioteca");
+    Sala* jardim = criarSala("Jardim");
+    Sala* despensa = criarSala("Despensa");
+    Sala* escritorio = criarSala("Escritorio");
