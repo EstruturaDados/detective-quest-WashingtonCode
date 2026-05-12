@@ -124,3 +124,18 @@ void explorarSalas(Sala* raiz) {
         }
     }
 }
+
+/**
+ * liberarMemoria() - Libera a árvore binária da memória.
+ * Utiliza o percurso pós-ordem (visita filhos antes do pai).
+ */
+void liberarMemoria(Sala* raiz) {
+    if (raiz == NULL) return;
+
+    // Primeiro percorre as subárvores
+    liberarMemoria(raiz->esquerda);
+    liberarMemoria(raiz->direita);
+
+    // Libera o nó atual
+    free(raiz);
+}
