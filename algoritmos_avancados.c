@@ -67,3 +67,60 @@ Sala* criarSala(char nome[]) {
     novaSala->direita = NULL;
     return novaSala;
 }
+
+/**
+ * explorarSalas() - Função principal de interação com o jogador.
+ * Navega pela árvore conforme a entrada do usuário até encontrar um nó-folha.
+ */
+void explorarSalas(Sala* raiz) {
+    Sala* atual = raiz;
+    char escolha;
+
+    printf("\n========================================\n");
+    printf("      BEM-VINDO AO DETECTIVE QUEST      \n");
+    printf("========================================\n");
+    printf("Sua missao: Explore a mansao ate o fim.\n");
+
+    while (atual != NULL) {
+        printf("\nVocê está em: %s\n", atual->nome);
+
+        // Verificação de Nó-Folha (Objetivo final)
+        if (atual->esquerda == NULL && atual->direita == NULL) {
+            printf("----------------------------------------\n");
+            printf("Voce chegou ao fim do caminho nesta ala.\n");
+            printf("Investigacao concluida na sala: %s\n", atual->nome);
+            break;
+        }
+
+        // Exibição de opções dinâmicas
+        printf("Caminhos disponiveis:\n");
+        if (atual->esquerda) printf(" [e] Esquerda -> Ir para: %s\n", atual->esquerda->nome);
+        if (atual->direita)  printf(" [d] Direita  -> Ir para: %s\n", atual->direita->nome);
+        printf(" [s] Sair do Jogo\n");
+        
+        printf("\nSua escolha: ");
+        scanf(" %c", &escolha);
+
+        if (escolha == 'e' || escolha == 'E') {
+            if (atual->esquerda) {
+                atual = atual->esquerda;
+            } else {
+                printf("\aAVISO: Nao existe caminho a esquerda aqui!\n");
+            }
+        } 
+        else if (escolha == 'd' || escolha == 'D') {
+            if (atual->direita) {
+                atual = atual->direita;
+            } else {
+                printf("\aAVISO: Nao existe caminho a direita aqui!\n");
+            }
+        } 
+        else if (escolha == 's' || escolha == 'S') {
+            printf("Encerrando investigacao prematuramente...\n");
+            break;
+        } 
+        else {
+            printf("Comando invalido! Use 'e', 'd' ou 's'.\n");
+        }
+    }
+}
