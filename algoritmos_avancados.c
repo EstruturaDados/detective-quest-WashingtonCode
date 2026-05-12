@@ -5,3 +5,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+// Criação da Struck sala para representar cada cômodo da mansão
+typedef struct Sala {
+    char nome[50];
+    struct Sala *esquerda;
+    struct Sala *direita;
+} Sala;
