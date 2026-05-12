@@ -211,3 +211,32 @@ void exibirPistas(PistaNode* raiz) {
         exibirPistas(raiz->dir);
     }
 }
+
+// --- FUNÇÕES DE LIBERAÇÃO DE MEMÓRIA ---
+
+void liberarMapa(Sala* raiz) {
+    if (raiz) {
+        liberarMapa(raiz->esquerda);
+        liberarMapa(raiz->direita);
+        free(raiz);
+    }
+}
+
+void liberarPistas(PistaNode* raiz) {
+    if (raiz) {
+        liberarPistas(raiz->esq);
+        liberarPistas(raiz->dir);
+        free(raiz);
+    }
+}
+
+void liberarHash() {
+    for (int i = 0; i < TAM_HASH; i++) {
+        HashNode* atual = tabelaHash[i];
+        while (atual) {
+            HashNode* temp = atual;
+            atual = atual->proximo;
+            free(temp);
+        }
+    }
+}
